@@ -24,6 +24,11 @@ describe('enqueue', () => {
     const { keys } = await kv.list({ prefix: 'msg:' })
     expect(keys).toHaveLength(1)
     expect(keys[0].name).toMatch(/^msg:/)
+    // Add a second item and verify two distinct keys:
+    await enqueue(kv as any, 'msg', { id: '2', text: 'world', ts: 2000 })
+    const { keys: keys2 } = await kv.list({ prefix: 'msg:' })
+    expect(keys2).toHaveLength(2)
+    expect(new Set(keys2.map(k => k.name)).size).toBe(2)
   })
 })
 
@@ -33,6 +38,8 @@ describe('dequeue', () => {
     await enqueue(kv as any, 'msg', { id: '2', text: 'b', ts: 2 })
     const items = await dequeue(kv as any, 'msg')
     expect(items).toHaveLength(2)
+    expect(items).toContainEqual({ id: '1', text: 'a', ts: 1 })
+    expect(items).toContainEqual({ id: '2', text: 'b', ts: 2 })
     const { keys } = await kv.list({ prefix: 'msg:' })
     expect(keys).toHaveLength(0)
   })
