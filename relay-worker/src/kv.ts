@@ -12,12 +12,12 @@ export async function enqueue(kv: KVAdapter, prefix: string, item: unknown): Pro
 export async function dequeue<T>(kv: KVAdapter, prefix: string): Promise<T[]> {
   const { keys } = await kv.list({ prefix: `${prefix}:` })
   if (keys.length === 0) return []
-  const items = await Promise.all(
+  const items: (T | null)[] = await Promise.all(
     keys.map(async ({ name }) => {
       const raw = await kv.get(name)
       await kv.delete(name)
       return raw ? JSON.parse(raw) as T : null
     })
   )
-  return items.filter(item => item !== null) as T[]
+  return items.filter((item): item is T => item !== null)
 }

@@ -48,9 +48,11 @@ export default {
     }
 
     if (req.method === 'POST' && url.pathname === '/api/send') {
-      const { text } = await req.json() as { text: string }
-      if (!text) return new Response('Bad Request', { status: 400 })
-      await enqueue(env.KV, 'msg', { id: crypto.randomUUID(), text, ts: Date.now() })
+      let body: { text?: string }
+      try { body = await req.json() as { text?: string } }
+      catch { return new Response('Bad Request', { status: 400 }) }
+      if (!body.text) return new Response('Bad Request', { status: 400 })
+      await enqueue(env.KV, 'msg', { id: crypto.randomUUID(), text: body.text, ts: Date.now() })
       return new Response('ok')
     }
 
@@ -59,7 +61,10 @@ export default {
     }
 
     if (req.method === 'POST' && url.pathname === '/api/reply') {
-      await enqueue(env.KV, 'reply', await req.json())
+      let body: Record<string, unknown>
+      try { body = await req.json() as Record<string, unknown> }
+      catch { return new Response('Bad Request', { status: 400 }) }
+      await enqueue(env.KV, 'reply', body)
       return new Response('ok')
     }
 
@@ -68,7 +73,10 @@ export default {
     }
 
     if (req.method === 'POST' && url.pathname === '/api/permission') {
-      await enqueue(env.KV, 'perm', { ...await req.json() as Record<string, unknown>, ts: Date.now() })
+      let body: Record<string, unknown>
+      try { body = await req.json() as Record<string, unknown> }
+      catch { return new Response('Bad Request', { status: 400 }) }
+      await enqueue(env.KV, 'perm', { ...body, ts: Date.now() })
       return new Response('ok')
     }
 
@@ -77,7 +85,10 @@ export default {
     }
 
     if (req.method === 'POST' && url.pathname === '/api/verdict') {
-      await enqueue(env.KV, 'verdict', { ...await req.json() as Record<string, unknown>, ts: Date.now() })
+      let body: Record<string, unknown>
+      try { body = await req.json() as Record<string, unknown> }
+      catch { return new Response('Bad Request', { status: 400 }) }
+      await enqueue(env.KV, 'verdict', { ...body, ts: Date.now() })
       return new Response('ok')
     }
 
