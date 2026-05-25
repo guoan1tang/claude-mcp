@@ -8,7 +8,7 @@ compatibility_date = "2025-01-01"
 
 [[kv_namespaces]]
 binding = "KV"
-id = "PLACEHOLDER_REPLACE_AFTER_CREATE"
+id = "80a906ba418b42dc943b76a6be949f47"
 
 [[rules]]
 type = "Text"
