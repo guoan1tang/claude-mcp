@@ -19,5 +19,5 @@ export async function dequeue<T>(kv: KVAdapter, prefix: string): Promise<T[]> {
       return raw ? JSON.parse(raw) as T : null
     })
   )
-  return items.filter((item): item is T => item !== null)
+  return items.filter(item => item !== null) as T[]
 }
