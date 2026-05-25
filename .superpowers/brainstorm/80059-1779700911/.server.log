@@ -1,0 +1,6 @@
+{"type":"server-started","port":60011,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:60011","screen_dir":"/Users/duliday/Documents/workspace/claude-mcp/.superpowers/brainstorm/80059-1779700911"}
+{"type":"screen-added","file":"/Users/duliday/Documents/workspace/claude-mcp/.superpowers/brainstorm/80059-1779700911/ui-layouts.html"}
+{"type":"screen-added","file":"/Users/duliday/Documents/workspace/claude-mcp/.superpowers/brainstorm/80059-1779700911/waiting.html"}
+{"type":"screen-added","file":"/Users/duliday/Documents/workspace/claude-mcp/.superpowers/brainstorm/80059-1779700911/final-design.html"}
+{"type":"screen-added","file":"/Users/duliday/Documents/workspace/claude-mcp/.superpowers/brainstorm/80059-1779700911/waiting-2.html"}
+{"type":"server-stopped","reason":"idle timeout"}

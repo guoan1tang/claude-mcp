@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/duliday/.claude/plugins/cache/superpowers-marketplace/superpowers/5.0.5/skills/brainstorming/scripts/start-server.sh *)",
+      "Bash(npm install *)",
+      "Bash(npm --version)",
+      "Bash(curl -fsSL https://bun.sh/install)",
+      "Bash(bash)",
+      "Bash([ -f \"$HOME/.bun/bin/bun\" ])",
+      "Bash([ ! -f \"$HOME/.bun/bin/bun.zip\" ])",
+      "Bash(~/.bun/bin/bun --version)",
+      "Bash(brew list *)",
+      "Read(//usr/local/bin/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(curl -sI \"https://github.com/oven-sh/bun/releases/latest/download/bun-darwin-x64.zip\")",
+      "Bash(curl -sI \"https://github.com/oven-sh/bun/releases/download/bun-v1.3.14/bun-darwin-x64.zip\")",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git -C /Users/duliday/Documents/workspace/claude-mcp log --oneline)",
+      "Bash(git -C /Users/duliday/Documents/workspace/claude-mcp ls-files --others --directory --exclude-standard)",
+      "Bash(wrangler --version)",
+      "Bash(npx wrangler *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('version','unknown'\\)\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); deps=d.get\\('packages',{}\\); print\\({k:v.get\\('version'\\) for k,v in list\\(deps.items\\(\\)\\)[:6]}\\)\")",
+      "Bash(python3 *)",
+      "Bash(git -C /Users/duliday/Documents/workspace/claude-mcp show 3f668f8 --name-only)",
+      "Bash(git -C /Users/duliday/Documents/workspace/claude-mcp status)",
+      "Bash(npm test *)",
+      "Bash(git *)",
+      "Bash(npx tsc *)",
+      "Bash(curl -v --max-time 5 \"http://localhost:8787/?token=dev-test-token\")",
+      "Bash(NO_PROXY=localhost,127.0.0.1 no_proxy=localhost,127.0.0.1 curl -s --max-time 5 \"http://localhost:8787/?token=dev-test-token\")",
+      "Bash(curl *)",
+      "Bash(bun install *)",
+      "Bash(/Users/duliday/.bun/bin/bun install *)",
+      "Bash(/Users/duliday/.bun/bin/bun test *)",
+      "Bash(bun test *)",
+      "Bash(~/.bun/bin/bun test *)",
+      "mcp__channel-server__reply"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "channel-server"
+  ]
+}

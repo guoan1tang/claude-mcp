@@ -1,0 +1,91 @@
+<h2>最终界面确认</h2>
+<p class="subtitle">左右分栏 — 左侧对话+审批，右侧工具调用+可展开输出</p>
+
+<div class="mockup">
+  <div class="mockup-header">Claude Code Web Chat</div>
+  <div class="mockup-body" style="padding:0">
+    <div style="display:flex;height:420px;font-size:11px;font-family:monospace">
+
+      <!-- LEFT: Chat panel -->
+      <div style="flex:1;background:#1a1a2e;display:flex;flex-direction:column;border-right:1px solid #2a2a4a">
+        <div style="padding:8px 12px;background:#0f1117;color:#888;font-size:10px;border-bottom:1px solid #2a2a4a">💬 对话</div>
+        <div style="flex:1;padding:10px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+          <!-- User message -->
+          <div style="display:flex;justify-content:flex-end">
+            <div style="background:#2a2a4a;border-radius:8px 8px 2px 8px;padding:7px 11px;color:#aad4f5;max-width:75%">帮我把 src 目录整理一下，移除没用的文件</div>
+          </div>
+          <!-- Claude reply -->
+          <div style="display:flex;gap:6px;align-items:flex-start">
+            <div style="width:22px;height:22px;background:#7c3aed;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:white;margin-top:2px">C</div>
+            <div style="background:#1e1e3a;border-radius:2px 8px 8px 8px;padding:7px 11px;color:#e0e0e0;font-size:10px;flex:1">好的，我先读取目录结构，然后分析哪些文件可以删除。</div>
+          </div>
+          <!-- Claude reply 2 -->
+          <div style="display:flex;gap:6px;align-items:flex-start">
+            <div style="width:22px;height:22px;background:#7c3aed;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:white;margin-top:2px">C</div>
+            <div style="background:#1e1e3a;border-radius:2px 8px 8px 8px;padding:7px 11px;color:#e0e0e0;font-size:10px;flex:1">发现 3 个未使用文件：<br/><span style="color:#f87171">• old-utils.ts<br/>• test-backup.ts<br/>• draft.ts</span><br/>准备删除，需要你确认。</div>
+          </div>
+          <!-- Permission approval card -->
+          <div style="margin-left:28px;background:#1c1400;border:1px solid #f59e0b;border-radius:8px;padding:10px">
+            <div style="display:flex;align-items:center;gap:5px;margin-bottom:6px">
+              <span style="color:#f59e0b;font-size:12px">⚠️</span>
+              <span style="color:#f59e0b;font-size:10px;font-weight:bold">需要确认操作</span>
+            </div>
+            <div style="color:#d1d5db;font-size:10px;margin-bottom:2px">工具: <span style="color:#fbbf24">Bash</span></div>
+            <div style="color:#d1d5db;font-size:10px;margin-bottom:6px">命令: <code style="background:#0f1117;padding:1px 5px;border-radius:3px;color:#86efac">rm src/old-utils.ts src/test-backup.ts src/draft.ts</code></div>
+            <div style="color:#888;font-size:9px;margin-bottom:8px">删除 3 个未使用文件，操作不可逆</div>
+            <div style="display:flex;gap:6px">
+              <button style="background:#16a34a;color:white;border:none;padding:5px 14px;border-radius:5px;font-size:10px;cursor:pointer">✓ 允许执行</button>
+              <button style="background:#dc2626;color:white;border:none;padding:5px 14px;border-radius:5px;font-size:10px;cursor:pointer">✗ 拒绝</button>
+            </div>
+          </div>
+        </div>
+        <!-- Input bar -->
+        <div style="padding:8px;background:#0f1117;border-top:1px solid #2a2a4a;display:flex;gap:6px">
+          <div style="flex:1;background:#1a1a2e;border:1px solid #2a2a4a;border-radius:6px;padding:7px 10px;color:#555;font-size:10px">发送消息...</div>
+          <div style="background:#7c3aed;color:white;padding:7px 12px;border-radius:6px;font-size:10px">发送</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: CLI Activity panel -->
+      <div style="width:260px;background:#0f1117;display:flex;flex-direction:column">
+        <div style="padding:8px 12px;background:#0a0a0f;color:#888;font-size:10px;border-bottom:1px solid #1a1a2e">🖥️ CLI 活动</div>
+        <div style="flex:1;padding:8px;display:flex;flex-direction:column;gap:4px;overflow:hidden">
+          <!-- Completed tool: Read -->
+          <div style="background:#0a1f0a;border:1px solid #166534;border-radius:5px;padding:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="color:#4ade80;font-size:9px">✓ Read</span>
+              <span style="color:#555;font-size:8px">src/</span>
+            </div>
+          </div>
+          <!-- Completed tool: Read with expandable output -->
+          <div style="background:#0a1f0a;border:1px solid #166534;border-radius:5px;padding:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="color:#4ade80;font-size:9px">✓ Read</span>
+              <span style="color:#555;font-size:8px">old-utils.ts</span>
+            </div>
+            <div style="margin-top:4px;background:#051005;border-radius:3px;padding:4px;color:#6b7280;font-size:8px;line-height:1.5">// deprecated utility functions<br/>export function oldHelper() {<br/>  ...<br/><span style="color:#374151">▼ 展开全部 (24行)</span></div>
+          </div>
+          <!-- Completed tool: Bash with output -->
+          <div style="background:#0a1f0a;border:1px solid #166534;border-radius:5px;padding:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="color:#4ade80;font-size:9px">✓ Bash</span>
+              <span style="color:#555;font-size:8px">grep -r imports</span>
+            </div>
+            <div style="margin-top:4px;background:#051005;border-radius:3px;padding:4px;color:#6b7280;font-size:8px;line-height:1.5">src/index.ts: no refs<br/>src/main.ts: no refs</div>
+          </div>
+          <!-- Pending tool: Bash (awaiting approval) -->
+          <div style="background:#1c1400;border:1px solid #854d0e;border-radius:5px;padding:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="color:#f59e0b;font-size:9px">⏳ Bash</span>
+              <span style="color:#555;font-size:8px">rm *.ts</span>
+            </div>
+            <div style="color:#854d0e;font-size:8px;margin-top:2px">等待审批...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:16px">这个布局符合你的预期吗？确认后我们就写设计文档。</p>

@@ -2,7 +2,11 @@
   "mcpServers": {
     "channel-server": {
       "command": "bun",
-      "args": ["./channel-server/index.ts"]
+      "args": ["./channel-server/index.ts"],
+      "env": {
+        "RELAY_URL": "https://claude-relay.claude-relay.workers.dev",
+        "RELAY_TOKEN": "467abf65cdab695e952903fd47fefaacd6c1ca9cff17f6e9f1925e949b4c3060"
+      }
     }
   }
 }
