@@ -42,10 +42,13 @@ mcp.setRequestHandler(ListToolsRequestSchema, async () => ({
   }],
 }))
 
+const ReplyInput = z.object({ text: z.string() })
+
 mcp.setRequestHandler(CallToolRequestSchema, async (req) => {
   if (req.params.name === 'reply') {
-    const { text } = req.params.arguments as { text: string }
-    await relay.postReply({ id: crypto.randomUUID(), text, ts: Date.now() })
+    const parsed = ReplyInput.safeParse(req.params.arguments)
+    if (!parsed.success) throw new Error('reply tool: missing required field "text"')
+    await relay.postReply({ id: crypto.randomUUID(), text: parsed.data.text, ts: Date.now() })
     return { content: [{ type: 'text', text: 'sent' }] }
   }
   throw new Error(`Unknown tool: ${req.params.name}`)
@@ -90,4 +93,8 @@ async function tick() {
   }
 }
 
-setInterval(tick, 3000)
+async function scheduleTick() {
+  await tick()
+  setTimeout(scheduleTick, 3000)
+}
+scheduleTick()

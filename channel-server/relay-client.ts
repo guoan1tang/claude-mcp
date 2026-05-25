@@ -18,11 +18,13 @@ export function buildRelayClient(
 
   async function get<T>(path: string): Promise<T> {
     const res = await fetchFn(`${baseUrl}${path}`, { headers })
+    if (!res.ok) throw new Error(`GET ${path} failed: ${res.status} ${res.statusText}`)
     return res.json() as Promise<T>
   }
 
   async function post(path: string, body: unknown): Promise<void> {
-    await fetchFn(`${baseUrl}${path}`, { method: 'POST', headers, body: JSON.stringify(body) })
+    const res = await fetchFn(`${baseUrl}${path}`, { method: 'POST', headers, body: JSON.stringify(body) })
+    if (!res.ok) throw new Error(`POST ${path} failed: ${res.status} ${res.statusText}`)
   }
 
   return {
