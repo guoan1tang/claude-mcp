@@ -1,0 +1,17 @@
+name = "claude-relay"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+# Remove this block after setting the real secret with: wrangler secret put RELAY_TOKEN
+# RELAY_TOKEN = "dev-test-token"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "PLACEHOLDER_REPLACE_AFTER_CREATE"
+
+[rules]
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true

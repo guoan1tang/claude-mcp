@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "channel-server": {
+      "command": "bun",
+      "args": ["./channel-server/index.ts"]
+    }
+  }
+}
